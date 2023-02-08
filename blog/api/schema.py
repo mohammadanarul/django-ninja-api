@@ -1,19 +1,14 @@
-from ninja import Schema
+from ninja import ModelSchema
+from blog.models import Post, Comment
 
 
-class BlogSchema(Schema):
-    title: str
-    description: str
-    likes: int = 0
+class BlogSchema(ModelSchema):
+    class Config:
+        model = Post
+        model_fields = ['id', 'title', 'description', 'likes']
 
 
-class BlogDetailSchema(Schema):
-    id: int
-    title: str
-    description: str
-    likes: int = 0
-
-
-class CommentSchema(Schema):
-    post_id: int
-    text: str
+class CommentSchema(ModelSchema):
+    class Config:
+        model = Comment
+        model_fields = ['id', 'post', 'text']
