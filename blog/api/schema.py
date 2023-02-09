@@ -1,5 +1,11 @@
-from ninja import ModelSchema
-from blog.models import Post, Comment
+from ninja import ModelSchema, Schema
+
+from blog.models import Comment, Post
+
+
+class BlogSchemaID(Schema):
+    id: int
+    title: str
 
 
 class BlogSchema(ModelSchema):
